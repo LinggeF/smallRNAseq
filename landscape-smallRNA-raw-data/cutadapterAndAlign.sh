@@ -4,6 +4,7 @@ for i in `cat samplelist`
 do
 	cutadapt -q 20 -a TGGAATTCTCGGGTGCCAAGG -m 17 --untrimmed-output $i.notrim.fq -o $i.trimmed.fq $i.fastq
 	seqtk seq -a $i.trimmed.fq > $i.trimmed.fasta
+	mkdir $i
 	~/Tools/SHRiMP_2_2_3/bin/gmapper-ls -L miRNA.hg19.final-ls $i.trimmed.fasta --max-alignments 0 -n 1 -U --local --strata > $i/$i.miRNA.best.mapping.strata.sam
 	~/Tools/SHRiMP_2_2_3/bin/gmapper-ls -L piRNA.hg19.uniq-ls $i.trimmed.fasta --max-alignments 0 -n 1 -U --local --strata > $i/$i.piRNA.best.mapping.strata.sam
 	~/Tools/SHRiMP_2_2_3/bin/gmapper-ls -L tRNA.hg19.final-ls $i.trimmed.fasta -n 1 --max-alignments 0 -U --local --strata > $i/$i.tRNA.best.mapping.strata.sam
@@ -13,3 +14,7 @@ do
 	~/Tools/SHRiMP_2_2_3/bin/gmapper-ls -L smallRNA.final-ls $i.trimmed.fasta -n 1 --max-alignments 0 -U --local --strata > $i/$i.smallRNA.best.mapping.strata.sam
 done
 
+
+# This is a test file.
+# I'm studying Git.
+# It is a very cool function! :)
